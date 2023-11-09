@@ -9,11 +9,11 @@
 </VirtualHost>
 
 <VirtualHost *:80>	
-	DocumentRoot "D:/Projects/mysites/phonebook/public" 
+	DocumentRoot "D:\Projects\MySQL\Project\public" 
 	ServerName phonebook.localhost
 	
 	# Set access permission 
-	<Directory "D:/Projects/mysites/phonebook/public"> 
+	<Directory "D:\Projects\MySQL\Project\public"> 
 		Options Indexes FollowSymLinks Includes ExecCGI
 		AllowOverride All
 		Require all granted
