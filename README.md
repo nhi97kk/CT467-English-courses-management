@@ -10,7 +10,7 @@
 
 <VirtualHost *:80>	
 	DocumentRoot "D:\Projects\MySQL\Project\public" 
-	ServerName phonebook.localhost
+	ServerName mysqlproject.localhost
 	
 	# Set access permission 
 	<Directory "D:\Projects\MySQL\Project\public"> 
