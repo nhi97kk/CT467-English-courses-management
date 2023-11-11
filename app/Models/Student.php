@@ -10,6 +10,10 @@ class Student extends Model
 
     protected $fillable = ['name', 'email','phone'];
 
+    public function result() {
+        return $this->hasMany(Result::class);
+        }
+
     public static function validate(array $data){
         if (!$data['name']) {
             $errors['name'] = 'Name is required.';

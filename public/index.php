@@ -50,10 +50,29 @@ $router->get('/dashboard','\App\Controllers\Admin\AdminController@dashboard');
     $router->post('/dashboard/time/(\d+)','\App\Controllers\Admin\TimeController@update');
     $router->post('/dashboard/time/delete/(\d+)','\App\Controllers\Admin\TimeController@destroy');
 
-
-
-
-
+//Teacher routes
+$router->get('/teacher/course','\App\Controllers\Teacher\CourseController@index');
+$router->get('/teacher/course/create', '\App\Controllers\Teacher\CourseController@create');
+$router->post('/teacher/course', '\App\Controllers\Teacher\CourseController@store');
+$router->get('/teacher/course/edit/(\d+)','\App\Controllers\Teacher\CourseController@edit');
+$router->post('/teacher/course/(\d+)','\App\Controllers\Teacher\CourseController@update');
+    //info
+    $router->get('/teacher/info','\App\Controllers\Teacher\InfoController@info');
+    //manage student
+    $router->get('/teacher/student','\App\Controllers\Teacher\ManageController@index');
+    $router->get('/teacher/manage/(\d+)','\App\Controllers\Teacher\ManageController@manage');
+    $router->post('/teacher/manage/add','\App\Controllers\Teacher\ManageController@add'); 
+    $router->get('/teacher/view/(\d+)','\App\Controllers\Teacher\ManageController@view');
+    $router->post('/teacher/view/delete','\App\Controllers\Teacher\ManageController@destroy');
+    //result
+    $router->get('/teacher/result','\App\Controllers\Teacher\ResultController@index');
+    $router->get('/teacher/result/(\d+)','\App\Controllers\Teacher\ResultController@result');
+    $router->post('/teacher/result/add','\App\Controllers\Teacher\ResultController@update');
+    $router->get('/teacher/result/view/(\d+)','\App\Controllers\Teacher\ResultController@view');
+    //changePass
+    $router->get('/teacher/change-password','\App\Controllers\Teacher\InfoController@change');
+    $router->post('/teacher/change-password','\App\Controllers\Teacher\InfoController@store');
+    $router->get('/teacher/change-password/success','\App\Controllers\Teacher\InfoController@success');
 
 // Auth routes
 $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
@@ -61,18 +80,15 @@ $router->get('/register', '\App\Controllers\Auth\RegisterController@create');
 $router->post('/register', '\\App\Controllers\Auth\RegisterController@store');
 $router->get('/login', '\App\Controllers\Auth\LoginController@create');
 $router->post('/login', '\App\Controllers\Auth\LoginController@store');
+$router->get('/loginStudent', '\App\Controllers\Auth\LoginController@createStu');
+$router->post('/loginStudent', '\App\Controllers\Auth\LoginController@storeStu');
+$router->post('/logoutStudent', '\App\Controllers\Auth\LoginController@destroyStu');
 
 // Home routes
 $router->get('/', '\App\Controllers\Admin\AdminController@indexhome');
-$router->get('/home', '\App\Controllers\Admin\AdminController@indexhome');
-// $router->get('/course/create', '\App\Controllers\CourseController@create');
-// $router->post('/course', '\App\Controllers\CourseController@store');
-// $router->get('/course/edit/(\d+)',
-// '\App\Controllers\CourseController@edit');
-// $router->post('/course/(\d+)',
-// '\App\Controllers\CourseController@update');
-// $router->post('/course/delete/(\d+)',
-// '\App\Controllers\CourseController@destroy');
+// $router->get('/home', '\App\Controllers\Admin\AdminController@indexhome');
+$router->get('/student', '\App\Controllers\Admin\AdminController@indexStu');
+
 
 $router->set404('\App\Controllers\Controller@sendNotFound');
 

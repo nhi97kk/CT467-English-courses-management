@@ -8,10 +8,10 @@
             <!-- FLASH MESSAGES -->
 
             <div class="card mt-3">
-                <div class="card-header font-weight-bold text-uppercase">Login</div>
+                <div class="card-header font-weight-bold text-uppercase">Login Student</div>
                 <div class="card-body">
 
-                    <form method="POST" action="/login">
+                    <form method="POST" action="/loginStudent">
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label">E-Mail Address</label>
@@ -26,18 +26,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">Password</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>" name="password" required>
-
-                                <?php if (isset($errors['password'])) : ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?= $this->e($errors['password']) ?></strong>
-                                    </span>
-                                <?php endif ?>
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
@@ -46,10 +34,7 @@
                                 </button>
 
                                 <a class="btn btn-link" href="/register">
-                                    You are a new user?
-                                </a>
-                                <a class="btn btn-link" href="/loginStudent">
-                                    You are a student?
+                                    You are a new teacher?
                                 </a>
                             </div>
                         </div>

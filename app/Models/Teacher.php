@@ -31,6 +31,19 @@ class Teacher extends Model
         return $errors;
     }
 
+    public static function validateChange(array $data)
+    {
+        $errors = [];
+
+        if (strlen($data['password']) < 6) {
+            $errors['password'] = 'Password must be at least 6 characters.';
+        } elseif ($data['password'] != $data['password_confirmation']) {
+            $errors['password'] = 'Password confirmation does not match.';
+        }
+
+        return $errors;
+    }
+
     public static function validateCreate(array $data) 
     {
         $errors = [];

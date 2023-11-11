@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Teacher;
 
+use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Course;
+use App\Models\Teacher;
+use App\Models\Student;
 
 class CourseController extends Controller
 {
@@ -18,13 +21,13 @@ class CourseController extends Controller
 
     public function index()
     {
-        $this->sendPage('courses/index', [
+        $this->sendPage('courses/indexTeacher', [
             'courses' => Guard::teacher()->courses
         ]);
     }
     public function create()
     {
-        $this->sendPage('courses/create', [
+        $this->sendPage('courses/createTeacher', [
             'errors' => session_get_once('errors'),
             'old' => $this->getSavedFormValues()
         ]);
@@ -38,12 +41,12 @@ class CourseController extends Controller
             $course->fill($data);
             $course->teacher()->associate(Guard::teacher());
             $course->save();
-            redirect('/');
+            redirect('/teacher/course');
         }
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/course/add', ['errors' => $model_errors]);
+        redirect('teacher/course/add', ['errors' => $model_errors]);
     }
     protected function filterContactData(array $data)
     {
@@ -70,23 +73,23 @@ class CourseController extends Controller
                 $course->toArray()
 
         ];
-        $this->sendPage('courses/edit', $data);
+        $this->sendPage('courses/editTeacher', $data);
     }
     public function update($courseId)
     {
         $course = Course::findOrFail($courseId);
-        // if (!$course) {
-        //     $this->sendNotFound();
-        // }
+        if (!$course) {
+            $this->sendNotFound();
+        }
         $data = $this->filterContactData($_POST);
         $model_errors = Course::validate($data);
         if (empty($model_errors)) {
             $course->fill($data);
             $course->save();
-            redirect('/');
+            redirect('/teacher/course');
         }
         $this->saveFormValues($_POST);
-        redirect('/courses/edit/' . $courseId, [
+        redirect('teacher/course/edit/' . $courseId, [
             'errors' => $model_errors
         ]);
     }
@@ -99,6 +102,6 @@ class CourseController extends Controller
             $this->sendNotFound();
         }
         $course->delete();
-        redirect('/dashboard');
+        redirect('/teacher/course');
     }
 }

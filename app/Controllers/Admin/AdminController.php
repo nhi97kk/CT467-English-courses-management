@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        if (!Guard::isUserLoggedIn()) {
+        if (!Guard::isUserLoggedIn() && !Guard::isUserLoggedInStu()) {
             redirect('/login');
         }
 
@@ -41,9 +41,17 @@ class AdminController extends Controller
     public function indexhome()
     {
         $this->sendPage('home', [
+            'courses' => Guard::teacher()->courses
+        ]);
+    }
+
+    public function indexStu()
+    {
+        $this->sendPage('page/students/index', [
             'courses' => Course::all()
         ]);
     }
+
     public function create()
     {
         $this->sendPage('courses/create', [
@@ -65,7 +73,7 @@ class AdminController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/course/add', ['errors' => $model_errors]);
+        redirect('/dashboard/course/create', ['errors' => $model_errors]);
     }
     protected function filterContactData(array $data)
     {

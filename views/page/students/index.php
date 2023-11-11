@@ -6,15 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?= $this->e($title) ?></title>
+    <title>MyE</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/style.css" rel="stylesheet">
-
-    <?= $this->section("page_specific_css") ?>
 </head>
 
 <body>
@@ -22,7 +20,7 @@
         <!-- Branding Image -->
         <a class="navbar-brand" href="/">
             <i class="fa-solid fa-graduation-cap"></i>
-            <b><?= $this->e($title) ?></b>
+            <b>MyE</b>
         </a>
 
         <!-- Collapsed Hamburger -->
@@ -39,25 +37,21 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <?php if (!\App\SessionGuard::isUserLoggedIn()&&!\App\SessionGuard::isUserLoggedInStu()) : ?>
+                <?php if (!\App\SessionGuard::isUserLoggedInStu()) : ?>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                <?php else : ?>         
-                    <?php if (\App\SessionGuard::teacher()->role === 1): ?>
-                            <li class="nav-item"><a class="nav-link" href="/dashboard">Admin Panel</a></li>
-                    <?php endif ?>
-
+                <?php else : ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                            <?= $this->e(\App\SessionGuard::teacher()->name) ?>
+                        <?= $this->e(\App\SessionGuard::student()->name) ?>
                              <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="/logoutStudent" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
-                            <form id="logout-form" class="d-none" action="/logout" method="POST">
+                            <form id="logout-form" class="d-none" action="/logoutStudent" method="POST">
                             </form>
                         </div>
                     </li>

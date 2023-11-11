@@ -33,12 +33,12 @@
             <li class="has-children">
                 <a href="/teacher/student"><i class="fa fa-users"></i> <span>Student</span>
             </li>
-            <li class="has-children">
+            <!-- <li class="has-children">
                 <a href="/teacher/room"><i class="fa-solid fa-door-open"></i><span>Room</span>
             </li>
             <li class="has-children">
                 <a href="/teacher/time"><i class="fa-solid fa-clock"></i><span>Time</span>
-            </li>
+            </li> -->
             <li class="has-children">
                 <a href="/teacher/schedule"><i class="fa-solid fa-calendar-days"></i> Schedule<span></span>
             </li>
@@ -53,19 +53,14 @@
     <div class="container">
         <!-- SECTION HEADING -->
         <h2 class="text-center animate__animated animate__bounce">Courses</h2>
-        <div class="row">
-            <div class="col-md-6 offset-md-3 text-center">
-                <p class="animate__animated animate__fadeInLeft">View your all courses here.</p>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-12">
 
                 <!-- FLASH MESSAGES -->
 
-                <a href="/dashboard/course/create" class="btn btn-primary mb-3">
-                    <i class="fa fa-plus"></i> New Contact</a>
+                <a href="/teacher/course/create" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus"></i> New Course</a>
 
                 <!-- Table Starts Here -->
                 <table id="course" class="table table-striped table-bordered">
@@ -73,7 +68,7 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
-                            <th scope="col">id_teacher</th>
+                            
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -86,17 +81,15 @@
                                 <td>
                                     <?= $this->e($course->desc) ?>
                                 </td>
-                                <td>
-                                    <?= $this->e($course->teacher_id) ?>
-                                </td>
+                                
                                 <td class="d-flex justify-content-center">
-                                    <a href="<?= '/dashboard/course/edit/' . $this->e($course->id) ?>" class="btn btn-xs btn-warning">
+                                    <a href="<?= '/teacher/course/edit/' . $this->e($course->id) ?>" class="btn btn-xs btn-warning">
                                         <i alt="Edit" class="fa fa-pencil"></i> Edit</a>
-                                    <form class="form-inline ml-1" action="<?= '/dashboard/course/delete/' . $this->e($course->id) ?>"
+                                    <form class="form-inline ml-1" action="<?= '/teacher/course/delete/' . $this->e($course->id) ?>"
                                         method="POST">
-                                        <button type="submit" class="btn btn-xs btn-danger" name="delete-course">
+                                        <!-- <button type="submit" class="btn btn-xs btn-danger" name="delete-course">
                                             <i alt="Delete" class="fa fa-trash"></i> Delete
-                                        </button>
+                                        </button> -->
                                     </form>
                                 </td>
                             </tr>
