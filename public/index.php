@@ -85,9 +85,8 @@ $router->post('/loginStudent', '\App\Controllers\Auth\LoginController@storeStu')
 $router->post('/logoutStudent', '\App\Controllers\Auth\LoginController@destroyStu');
 
 // Home routes
-$router->get('/', '\App\Controllers\Admin\AdminController@indexhome');
-// $router->get('/home', '\App\Controllers\Admin\AdminController@indexhome');
-$router->get('/student', '\App\Controllers\Admin\AdminController@indexStu');
+$router->get('/', '\App\Controllers\Admin\AdminController@index');
+
 
 
 $router->set404('\App\Controllers\Controller@sendNotFound');
