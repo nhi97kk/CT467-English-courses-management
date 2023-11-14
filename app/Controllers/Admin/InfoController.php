@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Teacher;
+namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
@@ -11,15 +11,10 @@ class InfoController extends Controller{
     {
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
-        }elseif(Guard::teacher()->role === 1) {
-            redirect('/dashboard');}
+        }elseif(Guard::teacher()->role === 0) {
+            redirect('/');}
 
         parent::__construct();
-    }
-
-    public function info(){
-        $teacher = Guard::teacher();
-        $this->sendPage('page/teachers/info',['teacher'=>$teacher]);
     }
 
     public function change(){
@@ -28,7 +23,7 @@ class InfoController extends Controller{
             'errors' => session_get_once('errors')
         ];
 
-        $this->sendPage('page/teachers/changePass', $data);
+        $this->sendPage('changePass', $data);
     }
 
     public function store()
@@ -46,7 +41,7 @@ class InfoController extends Controller{
         }
 
         // Dữ liệu không hợp lệ...
-        redirect('/teacher/change-password', ['errors' => $model_errors]);
+        redirect('/dashboard/change-password', ['errors' => $model_errors]);
     }
 
     protected function filterUserData(array $data)
@@ -63,10 +58,10 @@ class InfoController extends Controller{
        $teacher = Guard::teacher();
        $teacher->password = $password;
        $teacher->save();
-       redirect('/teacher/change-password/success');     
+       redirect('/dashboard/change-password/success');     
     }
 
     public function success(){
-        $this->sendPage('/page/teachers/success');
+        $this->sendPage('success');
     }
 }

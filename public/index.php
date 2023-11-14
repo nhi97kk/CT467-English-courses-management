@@ -42,13 +42,30 @@ $router->get('/dashboard','\App\Controllers\Admin\AdminController@dashboard');
     $router->get('/dashboard/room/edit/(\d+)','\App\Controllers\Admin\RoomController@edit');
     $router->post('/dashboard/room/(\d+)','\App\Controllers\Admin\RoomController@update');
     $router->post('/dashboard/room/delete/(\d+)','\App\Controllers\Admin\RoomController@destroy');
-    //Admin room
+    //Admin time
     $router->get('/dashboard/time','\App\Controllers\Admin\TimeController@index');
     $router->get('/dashboard/time/create', '\App\Controllers\Admin\TimeController@create');
     $router->post('/dashboard/time', '\App\Controllers\Admin\TimeController@store');
     $router->get('/dashboard/time/edit/(\d+)','\App\Controllers\Admin\TimeController@edit');
     $router->post('/dashboard/time/(\d+)','\App\Controllers\Admin\TimeController@update');
     $router->post('/dashboard/time/delete/(\d+)','\App\Controllers\Admin\TimeController@destroy');
+    //Admin Schedule 
+    $router->get('/dashboard/schedule','\App\Controllers\Admin\ScheduleController@index');
+    $router->get('/dashboard/schedule/create', '\App\Controllers\Admin\ScheduleController@create');
+    $router->post('/dashboard/schedule', '\App\Controllers\Admin\ScheduleController@store');
+    $router->get('/dashboard/schedule/edit/(\d+)','\App\Controllers\Admin\ScheduleController@edit');
+    $router->post('/dashboard/schedule/(\d+)','\App\Controllers\Admin\ScheduleController@update');
+    $router->post('/dashboard/schedule/delete/(\d+)','\App\Controllers\Admin\ScheduleController@destroy');
+    //Admin result
+    $router->get('/dashboard/result','\App\Controllers\Admin\ResultController@index');
+    $router->get('/dashboard/result/(\d+)','\App\Controllers\Admin\ResultController@result');
+    $router->post('/dashboard/result/add','\App\Controllers\Admin\ResultController@update');
+    $router->get('/dashboard/result/view/(\d+)','\App\Controllers\Admin\ResultController@view');
+    //Admin changePass
+    $router->get('/dashboard/change-password','\App\Controllers\Admin\InfoController@change');
+    $router->post('/dashboard/change-password','\App\Controllers\Admin\InfoController@store');
+    $router->get('/dashboard/change-password/success','\App\Controllers\Admin\InfoController@success');
+
 
 //Teacher routes
 $router->get('/teacher/course','\App\Controllers\Teacher\CourseController@index');
@@ -73,6 +90,10 @@ $router->post('/teacher/course/(\d+)','\App\Controllers\Teacher\CourseController
     $router->get('/teacher/change-password','\App\Controllers\Teacher\InfoController@change');
     $router->post('/teacher/change-password','\App\Controllers\Teacher\InfoController@store');
     $router->get('/teacher/change-password/success','\App\Controllers\Teacher\InfoController@success');
+    //Admin Schedule 
+    $router->get('/teacher/schedule','\App\Controllers\Teacher\ScheduleController@index');
+    $router->get('/teacher/schedule/set/(\d+)','\App\Controllers\Teacher\ScheduleController@chose');
+    $router->post('/teacher/schedule/set','\App\Controllers\Teacher\ScheduleController@set');
 
 // Auth routes
 $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
@@ -85,9 +106,10 @@ $router->post('/loginStudent', '\App\Controllers\Auth\LoginController@storeStu')
 $router->post('/logoutStudent', '\App\Controllers\Auth\LoginController@destroyStu');
 
 // Home routes
-$router->get('/', '\App\Controllers\Admin\AdminController@index');
+$router->get('/','\App\Controllers\Teacher\CourseController@index');
 
-
+//Student routes
+$router->get('/student','\App\Controllers\Student\StudentController@index');
 
 $router->set404('\App\Controllers\Controller@sendNotFound');
 

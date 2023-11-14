@@ -42,11 +42,7 @@
                 <?php if (!\App\SessionGuard::isUserLoggedIn()&&!\App\SessionGuard::isUserLoggedInStu()) : ?>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                <?php else : ?>         
-                    <?php if (\App\SessionGuard::teacher()->role === 1): ?>
-                            <li class="nav-item"><a class="nav-link" href="/dashboard">Admin Panel</a></li>
-                    <?php endif ?>
-
+                <?php else : ?>        
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                             <?= $this->e(\App\SessionGuard::teacher()->name) ?>

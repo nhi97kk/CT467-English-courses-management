@@ -10,8 +10,11 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-        if (Guard::isUserLoggedIn()) {
-            redirect('/home');
+        if (Guard::isUserLoggedIn() && Guard::teacher()->role === 0) {
+            redirect('/teacher/course');
+        }
+        if (Guard::isUserLoggedIn() && Guard::teacher()->role === 1) {
+            redirect('/dashboard');
         }
 
         parent::__construct();
@@ -60,8 +63,7 @@ class RegisterController extends Controller
         return Teacher::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
-            'role' => 0
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT)
         ]);
     }
 }

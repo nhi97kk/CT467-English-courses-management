@@ -15,6 +15,8 @@ class CourseController extends Controller
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
         }
+        elseif(Guard::teacher()->role === 1) {
+            redirect('/dashboard');}
 
         parent::__construct();
     }

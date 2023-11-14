@@ -3,10 +3,10 @@
 <?php $this->start("page") ?>
 <div class="container">
     <!-- SECTION HEADING -->
-    <h2 class="text-center animate__animated animate__bounce">Times</h2>
+    <h2 class="text-center animate__animated animate__bounce">Day-Times</h2>
     <div class="row">
         <div class="col-md-6 offset-md-3 text-center">
-            <p class="animate__animated animate__fadeInLeft">Update your Time here.</p>
+            <p class="animate__animated animate__fadeInLeft">Update your Day-Time here.</p>
         </div>
     </div>
 
@@ -18,11 +18,22 @@
                 <!-- Name -->
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter nameber" value="<?= $this->e($time['name']) ?>" />
+                    <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter name" value="<?= $this->e($time['name']) ?>" />
 
                     <?php if (isset($errors['name'])) : ?>
                         <span class="invalid-feedback">
                             <strong><?= $this->e($errors['name']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="day">Day</label>
+                    <input type="text" name="day" class="form-control<?= isset($errors['day']) ? ' is-invalid' : '' ?>" maxlen="255" id="day" placeholder="Enter day here" value="<?= $this->e($time['day']) ?>" />
+
+                    <?php if (isset($errors['day'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['day']) ?></strong>
                         </span>
                     <?php endif ?>
                 </div>
@@ -51,7 +62,7 @@
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" name="submit" id="submit" class="btn btn-primary">Update time</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Update day-time</button>
             </form>
 
         </div>

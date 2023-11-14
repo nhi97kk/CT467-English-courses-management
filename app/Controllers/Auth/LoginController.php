@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function create()
     {
         if (Guard::isUserLoggedIn() && Guard::teacher()->role === 0) {
-            redirect('/');
+            redirect('/teacher/course');
         }
         if (Guard::isUserLoggedIn() && Guard::teacher()->role === 1) {
             redirect('/dashboard');

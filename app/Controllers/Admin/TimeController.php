@@ -12,6 +12,8 @@ class TimeController extends Controller
     {
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
+        }else if(Guard::teacher()->role === 0){
+            redirect('/');
         }
 
         parent::__construct();
@@ -51,6 +53,7 @@ class TimeController extends Controller
     {
         return [
             'name' => $data['name'] ?? '',
+            'day' => $data['day'] ??'',
             // 'phone' => preg_replace('/\D+/', '', $data['phone']),
             'start' => $data['start'] ?? '',
             'end' => $data['end'] ?? ''

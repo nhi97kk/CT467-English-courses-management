@@ -12,6 +12,8 @@ class StudentController extends Controller
     {
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
+        }else if(Guard::teacher()->role === 0){
+            redirect('/');
         }
 
         parent::__construct();
@@ -37,7 +39,7 @@ class StudentController extends Controller
         if (empty($model_errors)) {
             $student = new Student();
             $student->fill($data);
-            // $student->student()->associate(Guard::student());
+            
             $student->save();
             redirect('/dashboard/student');
         }

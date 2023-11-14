@@ -1,64 +1,6 @@
-<?php $this->layout("layouts/default", ["title" => 'MyE']) ?>
+<?php $this->layout("layouts/defaultAdmin", ["title" => 'MyE']) ?>
 
-<?php $this->start("page_specific_css") ?>
-<style>
-    .side-nav>li {
-        padding: 0.5rem;
-        border-bottom: 1px solid #c1a67b;
-    }
-</style>
-<link href="https://cdn.datatables.net/v/bs4/dt-1.13.6/datatables.min.css" rel="stylesheet">
-<?php $this->stop() ?>
-
-<?php $this->start("page") ?>
-
-<div class="d-flex">
-    <div class="sidebar-nav">
-        <ul class="side-nav color-gray" style="list-style-type: none;
-    font-size: 1.1rem;
-    background-color: #ccc;
-    padding: 0;">
-            <li class="nav-header" style="font-size: 1.5rem;
-    background-color: black;
-    color: white;">
-                <span class="">Main Category</span>
-            </li>
-            <li>
-                <a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
-
-            </li>
-
-            <li class="nav-header" style="font-size: 1.5rem;
-    background-color: black;
-    color: white;">
-                <span class="">Appearance</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/course"><i class="fa fa-file-text"></i> <span>Course</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/teacher"><i class="fa-solid fa-chalkboard-user"></i> <span>Teacher</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/student"><i class="fa fa-users"></i> <span>Student</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/room"><i class="fa-solid fa-door-open"></i><span>Room</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/time"><i class="fa-solid fa-clock"></i><span>Time</span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/schedule"><i class="fa-solid fa-calendar-days"></i> Schedule<span></span>
-            </li>
-            <li class="has-children">
-                <a href="/dashboard/result"><i class="fa-solid fa-marker"></i> <span>Result</span>
-            <li><a href="/dashboard/change-password"><i class="fa fa fa-server"></i> <span> Admin Change
-                        Password</span></a>
-            </li>
-
-            </li>
-    </div>
+<?php $this->start("pagee") ?>
 
     <div class="container">
         <!-- SECTION HEADING -->
@@ -75,13 +17,14 @@
                 <!-- FLASH MESSAGES -->
 
                 <a href="/dashboard/time/create" class="btn btn-primary mb-3">
-                    <i class="fa fa-plus"></i> New Time</a>
+                    <i class="fa fa-plus"></i> New Day-Time</a>
 
                 <!-- Table Starts Here -->
                 <table id="time" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
+                            <th scope="col">Day</th>
                             <th scope="col">Start</th>
                             <th scope="col">End</th>
                             <th scope="col">Actions</th>
@@ -92,6 +35,9 @@
                             <tr>
                                 <td>
                                     <?= $this->e($time->name) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($time->day) ?>
                                 </td>
                                 <td>
                                     <?= $this->e($time->start) ?>
@@ -118,51 +64,5 @@
             </div>
         </div>
     </div>
-</div>
 
-<div id="delete-confirm" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Confirmation</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Do you want to delete this time?</div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Delete</button>
-                <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-<?php $this->stop() ?>
-
-<?php $this->start("page_specific_js") ?>
-<script src="https://cdn.datatables.net/v/bs4/dt-1.13.6/datatables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        new DataTable('#time');
-        $('button[name="delete-time"]').on('click', function (e) {
-            e.preventDefault();
-            const form = $(this).closest('form');
-            const nameTd = $(this).closest('tr').find('td:first');
-            if (nameTd.length > 0) {
-                $('.modal-body').html(
-                    `Do you want to delete "${nameTd.text()}"?`
-                );
-            }
-            $('#delete-confirm')
-                .modal({
-                    backdrop: 'static',
-                    keyboard: false
-                })
-                .one('click', '#delete', function () {
-                    form.trigger('submit');
-                });
-
-        });
-    });
-</script>
 <?php $this->stop() ?>

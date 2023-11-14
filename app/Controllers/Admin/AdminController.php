@@ -7,6 +7,7 @@ use App\SessionGuard as Guard;
 use App\Models\Course;
 use App\Models\Teacher;
 use App\Models\Student;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class AdminController extends Controller
 {
@@ -14,34 +15,36 @@ class AdminController extends Controller
     {
         if (!Guard::isUserLoggedIn() && !Guard::isUserLoggedInStu()) {
             redirect('/login');
+        } else if (Guard::teacher()->role === 0) {
+            redirect('/');
         }
 
         parent::__construct();
     }
 
-    public function dashboard(){
-        $coursesCount = Course::count();
-        $teachersCount = Teacher::count();
-        $studentsCount = Student::count();
+    public function dashboard()
+    {
+        $results = DB::select('CALL CountCourses()');
+        $coursesCount = $results[0]->total_courses;
 
-        $this->sendPage('/dashboard',
-            ['coursesCount'=> $coursesCount,
-            'teachersCount'=> $teachersCount,
-            'studentsCount'=> $studentsCount
-            ]
-        );
+        $results = DB::select('CALL CountTeachers()');
+        $teachersCount = $results[0]->total_teachers;
+
+        $results = DB::select('CALL CountStudents()');
+        $studentsCount = $results[0]->total_students;
+
+
+        $this->sendPage('/dashboard', [
+            'coursesCount' => $coursesCount,
+            'teachersCount' => $teachersCount,
+            'studentsCount' => $studentsCount
+        ]);
     }
     public function index()
     {
+        $courses = Course::all();
         $this->sendPage('courses/index', [
-            'courses' => Course::all()
-        ]);
-    }
-
-    public function indexhome()
-    {
-        $this->sendPage('home', [
-            'courses' => Guard::teacher()->courses
+            'courses' => $courses
         ]);
     }
 

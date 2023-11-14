@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Teacher;
+namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
@@ -14,15 +14,16 @@ class ResultController extends Controller{
     {
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
-        }elseif(Guard::teacher()->role === 1) {
-            redirect('/dashboard');}
+        }elseif(Guard::teacher()->role === 0) {
+            redirect('/');}
 
         parent::__construct();
     }
     public function index()
     {
-        $this->sendPage('page/teachers/results/index', [
-            'courses' => Guard::teacher()->courses
+        $courses = Course::all();
+        $this->sendPage('results/index', [
+            'courses' => $courses
         ]);
     }
 
@@ -38,7 +39,7 @@ class ResultController extends Controller{
 
         $data = ['course' => $course, 'students' => $students];
 
-        $this->sendPage('page/teachers/results/add', $data);
+        $this->sendPage('results/add', $data);
     }
 
     public function update()
@@ -65,7 +66,7 @@ class ResultController extends Controller{
         $result->save();
     }
 
-    redirect('/teacher/result/' . $courseId);
+    redirect('/dashboard/result/' . $courseId);
 }
 
     public function view($courseId)
@@ -82,7 +83,7 @@ class ResultController extends Controller{
             'students' => $students
         ];
 
-        $this->sendPage('page/teachers/results/view', $data);
+        $this->sendPage('results/view', $data);
     }
 
 }

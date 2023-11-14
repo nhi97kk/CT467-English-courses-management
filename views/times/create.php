@@ -18,7 +18,7 @@
                 <!-- num -->
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter name" value="<?= isset($old['name']) ? $this->e($old['name']) : '' ?>" />
+                    <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter name as MON_E8" value="<?= isset($old['name']) ? $this->e($old['name']) : '' ?>" />
 
                     <?php if (isset($errors['name'])) : ?>
                         <span class="invalid-feedback">
@@ -26,11 +26,22 @@
                         </span>
                     <?php endif ?>
                 </div>
+                
+                <div class="form-group">
+                    <label for="day">Day</label>
+                    <input type="text" name="day" class="form-control<?= isset($errors['day']) ? ' is-invalid' : '' ?>" maxlen="255" id="day" placeholder="Enter day in week" value="<?= isset($old['day']) ? $this->e($old['day']) : '' ?>" />
+
+                    <?php if (isset($errors['day'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['day']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
 
                 <!-- Phone -->
                 <div class="form-group">
                     <label for="start">Start</label>
-                    <input type="start" name="start" class="form-control<?= isset($errors['start']) ? ' is-invalid' : '' ?>" maxlen="255" id="start" placeholder="Enter start as 00:00:00" value="<?= isset($old['start']) ? $this->e($old['start']) : '' ?>" />
+                    <input type="text" name="start" class="form-control<?= isset($errors['start']) ? ' is-invalid' : '' ?>" maxlen="255" id="start" placeholder="Enter start as 00:00:00" value="<?= isset($old['start']) ? $this->e($old['start']) : '' ?>" />
 
                     <?php if (isset($errors['start'])) : ?>
                         <span class="invalid-feedback">
@@ -41,7 +52,7 @@
 
                 <div class="form-group">
                     <label for="end">End</label>
-                    <input type="end" name="end" class="form-control<?= isset($errors['end']) ? ' is-invalid' : '' ?>" maxlen="255" id="end" placeholder="Enter end as 00:00:00" value="<?= isset($old['end']) ? $this->e($old['end']) : '' ?>" />
+                    <input type="text" name="end" class="form-control<?= isset($errors['end']) ? ' is-invalid' : '' ?>" maxlen="255" id="end" placeholder="Enter end as 00:00:00" value="<?= isset($old['end']) ? $this->e($old['end']) : '' ?>" />
 
                     <?php if (isset($errors['end'])) : ?>
                         <span class="invalid-feedback">

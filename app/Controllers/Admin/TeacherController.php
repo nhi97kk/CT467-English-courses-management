@@ -13,7 +13,9 @@ class TeacherController extends Controller
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
         }
-
+        elseif(Guard::teacher()->role === 0){
+            redirect('/');
+        }
         parent::__construct();
     }
 

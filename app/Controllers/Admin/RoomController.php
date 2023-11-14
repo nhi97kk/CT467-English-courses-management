@@ -12,6 +12,8 @@ class RoomController extends Controller
     {
         if (!Guard::isUserLoggedIn()) {
             redirect('/login');
+        }else if(Guard::teacher()->role === 0){
+            redirect('/');
         }
 
         parent::__construct();
