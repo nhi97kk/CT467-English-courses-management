@@ -74,13 +74,13 @@ class Teacher extends Model
         return $errors;
     } 
 
-    public static function validateEdit(array $data) 
+    public static function validateEdit(array $data,$oldphone, $oldemail) 
     {
         $errors = [];
 
         if (!$data['email']) {
             $errors['email'] = 'Invalid email.';
-        }elseif (static::where('email', $data['email'])->count() > 0) {
+        }elseif (!$oldemail && static::where('email', $data['email'])->count() > 0) {
             $errors['email'] = 'Email already in use.';
         }
 
@@ -94,7 +94,7 @@ class Teacher extends Model
         );
         if (!$validPhone) {
             $errors['phone'] = 'Invalid phone number.';
-        }elseif (static::where('phone', $data['phone'])->count() > 0) {
+        }elseif (!$oldphone && static::where('phone', $data['phone'])->count() > 0) {
             $errors['phone'] = 'Phone already in use.';
         }
         

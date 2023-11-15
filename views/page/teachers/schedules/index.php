@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
 
-            <table id="schedule" class="table table-striped table-bordered">
+            <table id="course" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Day</th>

@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Room;
+use App\Models\Schedule;
 
 class RoomController extends Controller
 {
@@ -99,6 +100,13 @@ class RoomController extends Controller
             $this->sendNotFound();
         }
         $room->delete();
+
+        $schedules = Schedule::where('room_id', $roomId)->get();
+    if(!empty($schedules)) {
+        foreach ($schedules as $schedule) {
+            $schedule->delete();
+        }
+    }
         redirect('/dashboard/room');
     }
 }

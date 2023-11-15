@@ -7,6 +7,8 @@ use App\SessionGuard as Guard;
 use App\Models\Course;
 use App\Models\Teacher;
 use App\Models\Student;
+use App\Models\Schedule;
+use App\Models\Result;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class AdminController extends Controller
@@ -127,13 +129,28 @@ class AdminController extends Controller
     }
 
     public function destroy($courseId)
-    {
-        // $course = Guard::teacher()->courses->find($courseId);
-        $course = Course::findOrFail($courseId);
-        if (!$course) {
-            $this->sendNotFound();
+{
+    $course = Course::findOrFail($courseId);
+    if (!$course) {
+        $this->sendNotFound();
+    }
+    
+    $course->delete();
+    
+    $schedules = Schedule::where('course_id', $courseId)->get();
+    if(!empty($schedules)) {
+        foreach ($schedules as $schedule) {
+            $schedule->delete();
         }
-        $course->delete();
-        redirect('/dashboard/course');
-    }   
+    }
+    
+    $results = Result::where('course_id', $courseId)->get();
+    if(!empty($results)) {
+        foreach ($results as $result) {
+            $result->delete();
+        }
+    }
+    
+    redirect('/dashboard/course');
+}   
 }

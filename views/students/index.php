@@ -20,7 +20,7 @@
                     <i class="fa fa-plus"></i> New Student</a>
 
                 <!-- Table Starts Here -->
-                <table id="student" class="table table-striped table-bordered">
+                <table id="course" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -50,7 +50,7 @@
                                         <i alt="Edit" class="fa fa-pencil"></i> Edit</a>
                                     <form class="form-inline ml-1" action="<?= '/dashboard/student/delete/' . $this->e($student->id) ?>"
                                         method="POST">
-                                        <button type="submit" class="btn btn-xs btn-danger" name="delete-student">
+                                        <button type="submit" class="btn btn-xs btn-danger" name="delete-course">
                                             <i alt="Delete" class="fa fa-trash"></i> Delete
                                         </button>
                                     </form>
@@ -63,5 +63,21 @@
             </div>
         </div>
     </div>
-
+<div id="delete-confirm" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Do you want to delete this course?</div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php $this->stop() ?>

@@ -5,6 +5,9 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Teacher;
+use App\Models\Schedule;
+use App\Models\Result;
+use App\Models\Course;
 
 class TeacherController extends Controller
 {
@@ -82,7 +85,9 @@ class TeacherController extends Controller
             $this->sendNotFound();
         }
         $data = $this->filterContactData($_POST);
-        $model_errors = Teacher::validateEdit($data);
+        $oldphone = $teacher->phone;
+        $oldemail = $teacher->email;
+        $model_errors = Teacher::validateEdit($data, $oldphone, $oldemail);
         if (empty($model_errors)) {
             $teacher->fill($data);
             $teacher->save();
@@ -101,6 +106,28 @@ class TeacherController extends Controller
             $this->sendNotFound();
         }
         $teacher->delete();
+
+        $schedules = Schedule::where('teacher_id', $teacherId)->get();
+    if(!empty($schedules)) {
+        foreach ($schedules as $schedule) {
+            $schedule->delete();
+        }
+    }
+    
+
+    $courses = course::where('teacher_id', $teacherId)->get();
+    if(!empty($courses)) {
+        foreach ($courses as $course) {
+            $course->delete();
+            $results = Result::where('course_id', $course->id)->get();
+            if(!empty($results)) {
+                foreach ($results as $result) {
+                    $result->delete();
+                }
+            }
+        }
+    }
+
         redirect('/dashboard/teacher');
     }
 }

@@ -28,7 +28,7 @@
                                     <?= $this->e($student->email) ?>
                                 </td>
                                 <td class="d-flex justify-content-center">
-                                    <form class="form-inline ml-1" action="/teacher/result/add" method="POST">
+                                    <form class="form-inline ml-1" action="/dashboard/result/add" method="POST">
 
                                     <?php
                                     $result = \App\Models\Result::where('course_id', $course->id)

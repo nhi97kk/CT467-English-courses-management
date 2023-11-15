@@ -27,11 +27,12 @@
                         <?php endforeach; ?>
                     </select>
                     <?php if (isset($errors['teacher'])): ?>
-                        <div class="invalid-feedback">
+                        <span class="invalid-feedback">
                             <strong>
                             <?= $this->e($errors['teacher']) ?>
+                            
                             </strong>
-                        </div>
+                        </span>
                     <?php endif; ?>
                 </div>
 
@@ -48,11 +49,12 @@
                         <?php endforeach; ?>
                     </select>
                     <?php if (isset($errors['room'])): ?>
-                        <div class="invalid-feedback">
+                        <span class="invalid-feedback">
                             <strong>
                             <?= $this->e($errors['room']) ?>
+                            
                             </strong>
-                        </div>
+                        </span>
                     <?php endif; ?>
                 </div>
 
@@ -69,19 +71,14 @@
                         <?php endforeach; ?>
                     </select>
                     <?php if (isset($errors['time'])): ?>
-                        <div class="invalid-feedback">
+                        <span class="invalid-feedback">
                             <strong>
                             <?= $this->e($errors['time']) ?>
+                            
                             </strong>
-                        </div>
+                        </span>
                     <?php endif; ?>
-                    <?php if (isset($errors['note'])): ?>
-                        <div class="invalid-feedback">
-                            <strong>
-                            <?= $this->e($errors['note']) ?>
-                            </strong>
-                        </div>
-                    <?php endif; ?>
+                    
                 </div>
                 <!-- Submit -->
                 <button type="submit" name="submit" id="submit" class="btn btn-primary">Add schedule</button>

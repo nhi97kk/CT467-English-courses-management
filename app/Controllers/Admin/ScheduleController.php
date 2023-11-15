@@ -53,6 +53,7 @@ class ScheduleController extends Controller
                 $schedule->save();
                 redirect('/dashboard/schedule');
             }
+            
                 
         }
         // Lưu các giá trị của form vào $_SESSION['form']
@@ -92,21 +93,26 @@ class ScheduleController extends Controller
             $this->sendNotFound();
         }
         $data = $this->filterContactData($_POST);
-        $model_errors = schedule::validate($data);
-        if (empty($model_errors)) {
-            $existingSchedule = Schedule::where('teacher_id', $data['teacher_id'])->where('room_id', $data['room_id'])->first();
-            if (empty($existingSchedule)) {
-                $existingSchedule1 = Schedule::where('teacher_id', $data['teacher_id'])->where('time_id', $data['time_id'])->first();
-                
-            } else if($existingSchedule){
-                $existingSchedule1 = Schedule::where('room_id', $data['room_id'])->where('time_id', $data['time_id'])->first();
-            }
+        $oldteacher = $schedule->teacher_id;
+        $oldroom = $schedule->room_id;
+        $oldtime = $schedule->time_id;
 
-            if(!$existingSchedule1){
-                $schedule->fill($data);
+        $model_errors = schedule::validateEdit($data,$oldteacher,$oldroom,$oldtime);
+        if (empty($model_errors)) {
+            // $existingSchedule = Schedule::where('teacher_id', $data['teacher_id'])->where('room_id', $data['room_id'])->first();
+            // if (empty($existingSchedule)) {
+            //     $existingSchedule1 = Schedule::where('teacher_id', $data['teacher_id'])->where('time_id', $data['time_id'])->first();
+                
+            // } else if($existingSchedule){
+            //     $existingSchedule1 = Schedule::where('room_id', $data['room_id'])->where('time_id', $data['time_id'])->first();
+            // }
+
+            // if(!$existingSchedule1){
+                
+            // }
+            $schedule->fill($data);
                 $schedule->save();
                 redirect('/dashboard/schedule');
-            }
                 
         }
         $this->saveFormValues($_POST);

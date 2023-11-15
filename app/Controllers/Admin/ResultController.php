@@ -62,12 +62,14 @@ class ResultController extends Controller{
                     ->where('student_id', $studentId)
                     ->first();
 
-    if ($result) {
-        $result->result = $resultUD;
-        $result->save();
-    }
-
-    redirect('/dashboard/result/' . $courseId);
+                    $errors = Result::validate($resultUD);
+                    if (empty($errors)) {
+                        $result->result = $resultUD;
+                        $result->save();
+                        redirect('/dashboard/result/' . $courseId);
+                    }
+                
+                    redirect('/dashboard/result/' . $courseId,['errors' => $errors]);
 }
 
     public function view($courseId)

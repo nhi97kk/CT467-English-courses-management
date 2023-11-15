@@ -67,5 +67,28 @@
 
 <?php $this->start("page_specific_js") ?>
 <script src="https://cdn.datatables.net/v/bs4/dt-1.13.6/datatables.min.js"></script>
-    
+<script>
+    $(document).ready(function () {
+        new DataTable('#course');
+        $('button[name="delete-course"]').on('click', function (e) {
+            e.preventDefault();
+            const form = $(this).closest('form');
+            const nameTd = $(this).closest('tr').find('td:first');
+            if (nameTd.length > 0) {
+                $('.modal-body').html(
+                    `Do you want to delete "${nameTd.text()}"?`
+                );
+            }
+            $('#delete-confirm')
+                .modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
+                .one('click', '#delete', function () {
+                    form.trigger('submit');
+                });
+
+        });
+    });
+</script> 
 <?php $this->stop() ?>

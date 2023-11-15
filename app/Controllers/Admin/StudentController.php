@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Student;
+use App\Models\Result;
 
 class StudentController extends Controller
 {
@@ -46,7 +47,7 @@ class StudentController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/student/create', ['errors' => $model_errors]);
+        redirect('/dashboard/student/create', ['errors' => $model_errors]);
     }
 
     protected function filterContactData(array $data)
@@ -81,7 +82,9 @@ class StudentController extends Controller
             $this->sendNotFound();
         }
         $data = $this->filterContactData($_POST);
-        $model_errors = Student::validateEdit($data);
+        $oldphone = $student->phone;
+        $oldemail = $student->email;
+        $model_errors = Student::validateEdit($data, $oldphone, $oldemail);
         if (empty($model_errors)) {
             $student->fill($data);
             $student->save();
@@ -100,6 +103,13 @@ class StudentController extends Controller
             $this->sendNotFound();
         }
         $student->delete();
+
+        $results = Result::where('student_id', $studentId)->get();
+    if(!empty($results)) {
+        foreach ($results as $result) {
+            $result->delete();
+        }
+    }
         redirect('/dashboard/student');
     }
 }

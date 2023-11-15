@@ -69,7 +69,7 @@
     </div>
 
 
-<!-- <div id="delete-confirm" class="modal fade" tabindex="-1">
+<div id="delete-confirm" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <?php $this->stop() ?>
 
 

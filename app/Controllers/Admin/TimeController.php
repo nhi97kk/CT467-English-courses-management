@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Time;
+use App\Models\Schedule;
 
 class TimeController extends Controller
 {
@@ -46,7 +47,7 @@ class TimeController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/time/add', ['errors' => $model_errors]);
+        redirect('/dashboard/time/create', ['errors' => $model_errors]);
     }
 
     protected function filterContactData(array $data)
@@ -82,7 +83,10 @@ class TimeController extends Controller
             $this->sendNotFound();
         }
         $data = $this->filterContactData($_POST);
-        $model_errors = time::validate($data);
+        $oldday = $time->day;
+        $oldstart = $time->start;
+        $model_errors = time::validateEdit($data,$oldday, $oldstart);
+
         if (empty($model_errors)) {
             $time->fill($data);
             $time->save();
@@ -101,6 +105,13 @@ class TimeController extends Controller
             $this->sendNotFound();
         }
         $time->delete();
+
+        $schedules = Schedule::where('time_id', $timeId)->get();
+    if(!empty($schedules)) {
+        foreach ($schedules as $schedule) {
+            $schedule->delete();
+        }
+    }
         redirect('/dashboard/time');
     }
     
