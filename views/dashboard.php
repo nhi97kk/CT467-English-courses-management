@@ -20,7 +20,7 @@
                     </div>
 
                     <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a style="height: 10rem;" class="rounded align-items-center justify-content-around text-decoration-none text-white text-center d-flex bg-danger" href="/dashboard/course">
+                        <a style="height: 10rem;" class="rounded align-items-center justify-content-around text-decoration-none text-white text-center d-flex bg-danger" href="/dashboard/teacher">
                             <div class="d-flex flex-column justify-content-center align-items-center" >
                                 <span style="font-size: 3rem;" class="animate__animated animate__wobble">
                                 <?php echo $teachersCount-1 ?>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a style="height: 10rem;" class="rounded align-items-center justify-content-around text-decoration-none text-white text-center d-flex bg-warning" href="/dashboard/teacher">
+                        <a style="height: 10rem;" class="rounded align-items-center justify-content-around text-decoration-none text-white text-center d-flex bg-warning" href="/dashboard/course">
                             <div class="d-flex flex-column justify-content-center align-items-center" >
                                 <span style="font-size: 3rem;" class="animate__animated animate__wobble">
                                 <?php echo $coursesCount ?>

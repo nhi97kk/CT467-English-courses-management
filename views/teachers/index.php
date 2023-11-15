@@ -5,10 +5,10 @@
 
     <div class="container">
         <!-- SECTION HEADING -->
-        <h2 class="text-center animate__animated animate__bounce">Teachers</h2>
+        <h2 class="mt-5 text-center animate__animated animate__bounce">Teachers</h2>
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
-                <p class="animate__animated animate__fadeInLeft">View your all teachers here.</p>
+                <!-- <p class="animate__animated animate__fadeInLeft">View your all teachers here.</p> -->
             </div>
         </div>
 
@@ -17,8 +17,8 @@
 
                 <!-- FLASH MESSAGES -->
 
-                <a href="/dashboard/teacher/create" class="btn btn-primary mb-3">
-                    <i class="fa fa-plus"></i> New Teacher</a>
+                <!-- <a href="/dashboard/teacher/create" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus"></i> New Teacher</a> -->
 
                 <!-- Table Starts Here -->
                 <table id="teacher" class="table table-striped table-bordered">
@@ -26,6 +26,9 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Major</th>
+                            <th scope="col">Exp</th>
+                            <th scope="col">Phone</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -37,6 +40,15 @@
                                 </td>
                                 <td>
                                     <?= $this->e($teacher->email) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($teacher->major) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($teacher->exp) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($teacher->phone) ?>
                                 </td>
                                 <td class="d-flex justify-content-center">
                                     <a href="<?= '/dashboard/teacher/edit/' . $this->e($teacher->id) ?>" class="btn btn-xs btn-warning">

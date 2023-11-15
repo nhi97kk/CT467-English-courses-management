@@ -46,13 +46,14 @@ class StudentController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/student/add', ['errors' => $model_errors]);
+        redirect('/student/create', ['errors' => $model_errors]);
     }
 
     protected function filterContactData(array $data)
     {
         return [
             'name' => $data['name'] ?? '',
+            'address' => $data['address'] ?? '',
             'email' => $data['email'] ?? '',
             'phone' => preg_replace('/\D+/', '', $data['phone'])
         ];

@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use App\Models\Teacher;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class InfoController extends Controller{
     public function __construct()
@@ -27,22 +28,30 @@ class InfoController extends Controller{
     }
 
     public function store()
-    {
-        $this->saveFormValues($_POST, ['password', 'password_confirmation']);
+{
+    $this->saveFormValues($_POST, ['password', 'password_confirmation']);
 
-        $data = $this->filterUserData($_POST);
+    $data = $this->filterUserData($_POST);
+
+    try {
+        DB::beginTransaction();
+
         $model_errors = Teacher::validateChange($data);
         if (empty($model_errors)) {
             // Dữ liệu hợp lệ...
             $this->changePass($data);
 
-            // $messages = ['success' => 'User has been created successfully.'];
-            // redirect('/login', ['messages' => $messages]);
+            DB::commit();
+        } else {
+            // Dữ liệu không hợp lệ...
+            redirect('/dashboard/change-password', ['errors' => $model_errors]);
         }
-
-        // Dữ liệu không hợp lệ...
-        redirect('/dashboard/change-password', ['errors' => $model_errors]);
+    } catch (\Exception $e) {
+        DB::rollBack();
     }
+
+    // Tiếp tục xử lý hoặc chuyển hướng
+}
 
     protected function filterUserData(array $data)
     {

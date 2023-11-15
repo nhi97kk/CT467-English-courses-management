@@ -83,7 +83,9 @@ class AdminController extends Controller
         return [
             'name' => $data['name'] ?? '',
             // 'phone' => preg_replace('/\D+/', '', $data['phone']),
-            'desc' => $data['desc'] ?? ''
+            'desc' => $data['desc'] ?? '',
+            'start' => $data['start'] ?? '',
+            'end' => $data['end'] ?? ''
         ];
     }
 
@@ -119,7 +121,7 @@ class AdminController extends Controller
             redirect('/dashboard/course');
         }
         $this->saveFormValues($_POST);
-        redirect('dashboard/course/edit/' . $courseId, [
+        redirect('/dashboard/course/edit/' . $courseId, [
             'errors' => $model_errors
         ]);
     }

@@ -38,7 +38,39 @@
                         </span>
                     <?php endif ?>
                 </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" class="form-control<?= isset($errors['phone']) ? ' is-invalid' : '' ?>" maxlen="255" id="phone" placeholder="Enter phone" value="<?= $this->e($teacher['phone']) ?>" />
 
+                    <?php if (isset($errors['phone'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['phone']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="major">Major</label>
+                    <input type="text" name="major" class="form-control<?= isset($errors['major']) ? ' is-invalid' : '' ?>" maxlen="255" id="major" placeholder="Enter major" value="<?= $this->e($teacher['major']) ?>" />
+
+                    <?php if (isset($errors['major'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['major']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="exp">Exp</label>
+                    <input type="text" name="exp" class="form-control<?= isset($errors['exp']) ? ' is-invalid' : '' ?>" maxlen="255" id="exp" placeholder="Enter exp" value="<?= $this->e($teacher['exp']) ?>" />
+
+                    <?php if (isset($errors['exp'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['exp']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
 
                 <!-- Submit -->
                 <button type="submit" name="submit" id="submit" class="btn btn-primary">Update Teacher</button>

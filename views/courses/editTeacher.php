@@ -39,6 +39,28 @@
                     <?php endif ?>
                 </div>
 
+                <div class="form-group">
+                    <label for="start">Start</label>
+                    <input type="date" name="start" class="form-control<?= isset($errors['start']) ? ' is-invalid' : '' ?>" maxlen="255" id="start" placeholder="Enter start" value="<?= $this->e($course['start']) ?>" />
+
+                    <?php if (isset($errors['start'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['start']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="end">End</label>
+                    <input type="date" name="end" class="form-control<?= isset($errors['end']) ? ' is-invalid' : '' ?>" maxlen="255" id="end" placeholder="Enter end" value="<?= $this->e($course['end']) ?>" />
+
+                    <?php if (isset($errors['end'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['end']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
 
                 <!-- Submit -->
                 <button type="submit" name="submit" id="submit" class="btn btn-primary">Update Course</button>

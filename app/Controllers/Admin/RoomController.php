@@ -46,7 +46,7 @@ class RoomController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('/room/add', ['errors' => $model_errors]);
+        redirect('/dashboard/room/create', ['errors' => $model_errors]);
     }
 
     protected function filterContactData(array $data)

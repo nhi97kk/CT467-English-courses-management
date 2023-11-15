@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Result;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class ResultController extends Controller{
     public function __construct()

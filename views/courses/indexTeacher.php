@@ -33,12 +33,6 @@
             <li class="has-children">
                 <a href="/teacher/student"><i class="fa fa-users"></i> <span>Student</span>
             </li>
-            <!-- <li class="has-children">
-                <a href="/teacher/room"><i class="fa-solid fa-door-open"></i><span>Room</span>
-            </li>
-            <li class="has-children">
-                <a href="/teacher/time"><i class="fa-solid fa-clock"></i><span>Time</span>
-            </li> -->
             <li class="has-children">
                 <a href="/teacher/schedule"><i class="fa-solid fa-calendar-days"></i> Schedule<span></span>
             </li>
@@ -68,7 +62,8 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
-                            
+                            <th scope="col">Start</th>
+                            <th scope="col">End</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -80,6 +75,12 @@
                                 </td>
                                 <td>
                                     <?= $this->e($course->desc) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($course->start) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($course->end) ?>
                                 </td>
                                 
                                 <td class="d-flex justify-content-center">

@@ -16,15 +16,15 @@ $router = new \Bramus\Router\Router();
 $router->get('/dashboard','\App\Controllers\Admin\AdminController@dashboard');
     //Admin course
     $router->get('/dashboard/course','\App\Controllers\Admin\AdminController@index');
-    $router->get('/dashboard/course/create', '\App\Controllers\Admin\AdminController@create');
-    $router->post('/dashboard/course', '\App\Controllers\Admin\AdminController@store');
-    $router->get('/dashboard/course/edit/(\d+)','\App\Controllers\Admin\AdminController@edit');
-    $router->post('/dashboard/course/(\d+)','\App\Controllers\Admin\AdminController@update');
+    // $router->get('/dashboard/course/create', '\App\Controllers\Admin\AdminController@create');
+    // $router->post('/dashboard/course', '\App\Controllers\Admin\AdminController@store');
+    // $router->get('/dashboard/course/edit/(\d+)','\App\Controllers\Admin\AdminController@edit');
+    // $router->post('/dashboard/course/(\d+)','\App\Controllers\Admin\AdminController@update');
     $router->post('/dashboard/course/delete/(\d+)','\App\Controllers\Admin\AdminController@destroy');
     //Admin teacher
     $router->get('/dashboard/teacher','\App\Controllers\Admin\TeacherController@index');
-    $router->get('/dashboard/teacher/create', '\App\Controllers\Admin\TeacherController@create');
-    $router->post('/dashboard/teacher', '\App\Controllers\Admin\TeacherController@store');
+    // $router->get('/dashboard/teacher/create', '\App\Controllers\Admin\TeacherController@create');
+    // $router->post('/dashboard/teacher', '\App\Controllers\Admin\TeacherController@store');
     $router->get('/dashboard/teacher/edit/(\d+)','\App\Controllers\Admin\TeacherController@edit');
     $router->post('/dashboard/teacher/(\d+)','\App\Controllers\Admin\TeacherController@update');
     $router->post('/dashboard/teacher/delete/(\d+)','\App\Controllers\Admin\TeacherController@destroy');
@@ -110,6 +110,7 @@ $router->get('/','\App\Controllers\Teacher\CourseController@index');
 
 //Student routes
 $router->get('/student','\App\Controllers\Student\StudentController@index');
+
 
 $router->set404('\App\Controllers\Controller@sendNotFound');
 

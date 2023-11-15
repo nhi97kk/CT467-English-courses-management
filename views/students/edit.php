@@ -50,6 +50,17 @@
                     <?php endif ?>
                 </div>
 
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" class="form-control<?= isset($errors['address']) ? ' is-invalid' : '' ?>" maxlen="255" id="address" placeholder="Enter address" value="<?= $this->e($student['address']) ?>" />
+
+                    <?php if (isset($errors['address'])) : ?>
+                        <span class="invalid-feedback">
+                            <strong><?= $this->e($errors['address']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+
 
                 <!-- Submit -->
                 <button type="submit" name="submit" id="submit" class="btn btn-primary">Update Student</button>

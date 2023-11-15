@@ -35,7 +35,45 @@
                                 <?php endif ?>
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label">Phone</label>
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control <?= isset($errors['phone']) ? 'is-invalid' : '' ?>" name="phone" value="<?= isset($old['phone']) ? $this->e($old['phone']) : '' ?>" required >
 
+                                <?php if (isset($errors['phone'])) : ?>
+                                    <span class="invalid-feedback">
+                                        <strong><?= $this->e($errors['phone']) ?></strong>
+                                    </span>
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="major" class="col-md-4 col-form-label">Major</label>
+                            <div class="col-md-6">
+                                <input id="major" type="text" class="form-control <?= isset($errors['major']) ? 'is-invalid' : '' ?>" name="major" value="<?= isset($old['major']) ? $this->e($old['major']) : '' ?>" required >
+
+                                <?php if (isset($errors['major'])) : ?>
+                                    <span class="invalid-feedback">
+                                        <strong><?= $this->e($errors['major']) ?></strong>
+                                    </span>
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="exp" class="col-md-4 col-form-label">Exp</label>
+                            <div class="col-md-6">
+                                <input id="exp" type="text" class="form-control <?= isset($errors['exp']) ? 'is-invalid' : '' ?>" name="exp" value="<?= isset($old['exp']) ? $this->e($old['exp']) : '' ?>" required >
+
+                                <?php if (isset($errors['exp'])) : ?>
+                                    <span class="invalid-feedback">
+                                        <strong><?= $this->e($errors['exp']) ?></strong>
+                                    </span>
+                                <?php endif ?>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label">Password</label>

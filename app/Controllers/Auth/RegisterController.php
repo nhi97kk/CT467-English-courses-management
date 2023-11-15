@@ -53,6 +53,9 @@ class RegisterController extends Controller
         return [
             'name' => $data['name'] ?? null,
             'email' => filter_var($data['email'], FILTER_VALIDATE_EMAIL),
+            'major' => $data['major'] ?? '',
+            'exp' => $data['exp'] ?? '',
+            'phone' => preg_replace('/\D+/', '', $data['phone']),
             'password' => $data['password'] ?? null,
             'password_confirmation' => $data['password_confirmation'] ?? null
         ];
@@ -63,6 +66,9 @@ class RegisterController extends Controller
         return Teacher::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'major' => $data['major'] ?? '',
+            'exp' => $data['exp'] ?? '',
+            'phone' => preg_replace('/\D+/', '', $data['phone']),
             'password' => password_hash($data['password'], PASSWORD_DEFAULT)
         ]);
     }

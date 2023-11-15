@@ -53,8 +53,10 @@ class TeacherController extends Controller
     {
         return [
             'name' => $data['name'] ?? '',
-            // 'phone' => preg_replace('/\D+/', '', $data['phone']),
-            'email' => $data['email'] ?? ''
+            'phone' => preg_replace('/\D+/', '', $data['phone']),
+            'email' => $data['email'] ?? '',
+            'major' => $data['major'] ?? '',
+            'exp' => $data['exp'] ?? ''
         ];
     }
 

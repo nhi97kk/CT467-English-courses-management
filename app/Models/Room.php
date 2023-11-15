@@ -15,7 +15,10 @@ class Room extends Model
 
         if (!$data['num']) {
             $errors['num'] = 'Invalid room number.';
-        } 
+        } elseif (static::where('num', $data['num'])->count() > 0) {
+            $errors['num'] = 'Room already in use.';
+        }
+
 
         if (!$data['notes']) {
             $errors['notes'] = 'Notes is required.';

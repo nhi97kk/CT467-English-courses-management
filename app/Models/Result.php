@@ -18,5 +18,16 @@ class Result extends Model
         return $this->belongsTo(Student::class);
     }
 
-    
+    public static function validate( $data) 
+    {
+        $errors = [];
+
+        if (!$data) {
+            $errors = 'Invalid result.';
+        } elseif ($data< 0 || $data> 10) {
+            $errors = 'Invalid result.';
+        }
+
+        return $errors;
+    }
 }

@@ -26,6 +26,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -40,6 +41,9 @@
                                 </td>
                                 <td>
                                     <?= $this->e($student->phone) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($student->address) ?>
                                 </td>
                                 <td class="d-flex justify-content-center">
                                     <a href="<?= '/dashboard/student/edit/' . $this->e($student->id) ?>" class="btn btn-xs btn-warning">

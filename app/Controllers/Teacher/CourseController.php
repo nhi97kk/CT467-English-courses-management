@@ -17,7 +17,9 @@ class CourseController extends Controller
         }
         elseif(Guard::teacher()->role === 1) {
             redirect('/dashboard');}
-
+        elseif(Guard::isUserLoggedInStu()) {
+            redirect('/student');
+        }
         parent::__construct();
     }
 
@@ -48,14 +50,16 @@ class CourseController extends Controller
         // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
-        redirect('teacher/course/add', ['errors' => $model_errors]);
+        redirect('/teacher/course/create', ['errors' => $model_errors]);
     }
     protected function filterContactData(array $data)
     {
         return [
             'name' => $data['name'] ?? '',
             // 'phone' => preg_replace('/\D+/', '', $data['phone']),
-            'desc' => $data['desc'] ?? ''
+            'desc' => $data['desc'] ?? '',
+            'start' => $data['start'] ?? '',
+            'end' => $data['end'] ?? ''
         ];
     }
 
@@ -91,7 +95,7 @@ class CourseController extends Controller
             redirect('/teacher/course');
         }
         $this->saveFormValues($_POST);
-        redirect('teacher/course/edit/' . $courseId, [
+        redirect('/teacher/course/edit/' . $courseId, [
             'errors' => $model_errors
         ]);
     }

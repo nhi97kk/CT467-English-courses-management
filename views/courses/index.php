@@ -16,8 +16,8 @@
 
                 <!-- FLASH MESSAGES -->
 
-                <a href="/dashboard/course/create" class="btn btn-primary mb-3">
-                    <i class="fa fa-plus"></i> New Contact</a>
+                <!-- <a href="/dashboard/course/create" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus"></i> New Contact</a> -->
 
                 <!-- Table Starts Here -->
                 <table id="course" class="table table-striped table-bordered">
@@ -25,6 +25,8 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Start</th>
+                            <th scope="col">End</th>
                             <th scope="col">Teacher</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -39,12 +41,17 @@
                                     <?= $this->e($course->desc) ?>
                                 </td>
                                 <td>
+                                    <?= $this->e($course->start) ?>
+                                </td>
+                                <td>
+                                    <?= $this->e($course->end) ?>
+                                </td>
+                                <td>
                                     <?php $teacher = \App\Models\Teacher::where('id',$course->teacher_id)->first() ?>
                                     <?= $teacher->name ?>
                                 </td>
                                 <td class="d-flex justify-content-center">
-                                    <a href="<?= '/dashboard/course/edit/' . $this->e($course->id) ?>" class="btn btn-xs btn-warning">
-                                        <i alt="Edit" class="fa fa-pencil"></i> Edit</a>
+                                    
                                     <form class="form-inline ml-1" action="<?= '/dashboard/course/delete/' . $this->e($course->id) ?>"
                                         method="POST">
                                         <button type="submit" class="btn btn-xs btn-danger" name="delete-course">
