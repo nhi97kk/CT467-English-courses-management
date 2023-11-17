@@ -10,7 +10,7 @@
             <div class="col-12">
 
                 <!-- Table Starts Here -->
-                <table id="student" class="table table-striped table-bordered">
+                <table id="course" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Course Name</th>
@@ -26,10 +26,10 @@
                                     <?= $this->e($course->name) ?>
                                 </td>
                                 <td>
-                                    
+                                <?= $this->e($course->start) ?>
                                 </td>
                                 <td>
-                                    
+                                <?= $this->e($course->end) ?>
                                 </td>
                                 <td class="d-flex justify-content-center">
                                     <form class="form-inline ml-1" action="<?= '/teacher/schedule/set'?>" method="POST">
@@ -37,7 +37,7 @@
                                             <input type="hidden" name="courseId" value="<?= $this->e($course->id) ?>">
                                             <input type="hidden" name="scheduleId" value="<?= $this->e($scheduleId) ?>">
 
-                                            <button type="submit" class="btn btn-xs btn-success" name="delete-course">
+                                            <button type="submit" class="btn btn-xs btn-success" name="">
                                                 <i class="fa-solid fa-plus"></i> Set for this course
                                             </button>
                                         </form>

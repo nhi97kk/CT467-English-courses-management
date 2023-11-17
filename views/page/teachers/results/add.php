@@ -10,7 +10,7 @@
             <div class="col-12">
 
                 <!-- Table Starts Here -->
-                <table id="student" class="table table-striped table-bordered">
+                <table id="course" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>

@@ -46,9 +46,7 @@
                             </td>
 
                             <td class="d-flex justify-content-center">
-                                <a href="<?= '/dashboard/schedule/edit/' . $this->e($schedule->id) ?>"
-                                    class="btn btn-xs btn-warning">
-                                    <i alt="Edit" class="fa fa-pencil"></i> Edit</a>
+                                
                                 <form class="form-inline ml-1"
                                     action="<?= '/dashboard/schedule/delete/' . $this->e($schedule->id) ?>" method="POST">
                                     <button type="submit" class="btn btn-xs btn-danger" name="delete-course">

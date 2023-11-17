@@ -1,6 +1,6 @@
-<?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
+<?php $this->layout("page/teachers/default", ["title" => 'MyE']) ?>
 
-<?php $this->start("page") ?>
+<?php $this->start("pagee") ?>
 <div class="container">
     <!-- SECTION HEADING -->
     <h2 class="text-center animate__animated animate__bounce">Coursets</h2>

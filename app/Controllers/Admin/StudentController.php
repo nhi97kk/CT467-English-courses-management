@@ -59,7 +59,22 @@ class StudentController extends Controller
             'phone' => preg_replace('/\D+/', '', $data['phone'])
         ];
     }
+    // public function view($Id)
+    // {
+    //     $course = Course::findOrFail($courseId);
+    //     // Lấy danh sách sinh viên đã tham gia khóa học
+    //     $studentsJoin = Result::where('course_id', $courseId)->get();
+    //     // Lấy danh sách sinh viên tương ứng
+    //     $studentIds = $studentsJoin->pluck('student_id')->toArray();
+    //     $students = Student::whereIn('id', $studentIds)->get();
 
+    //     $data = [
+    //         'course' => $course,
+    //         'students' => $students
+    //     ];
+
+    //     $this->sendPage('results/view', $data);
+    // }
     public function edit($studentId)
     {
         $student = Student::findOrFail($studentId);
@@ -111,5 +126,10 @@ class StudentController extends Controller
         }
     }
         redirect('/dashboard/student');
+    }
+
+    public function view($studentId){
+        $results = Result::where('student_id', $studentId)->get();
+        $this->sendPage('/students/view',['results'=>$results]);
     }
 }

@@ -80,7 +80,7 @@ class Teacher extends Model
 
         if (!$data['email']) {
             $errors['email'] = 'Invalid email.';
-        }elseif (!$oldemail && static::where('email', $data['email'])->count() > 0) {
+        }elseif ($data['email']!=$oldemail && static::where('email', $data['email'])->count() > 0) {
             $errors['email'] = 'Email already in use.';
         }
 
@@ -94,7 +94,7 @@ class Teacher extends Model
         );
         if (!$validPhone) {
             $errors['phone'] = 'Invalid phone number.';
-        }elseif (!$oldphone && static::where('phone', $data['phone'])->count() > 0) {
+        }elseif ($data['phone']!=$oldphone && static::where('phone', $data['phone'])->count() > 0) {
             $errors['phone'] = 'Phone already in use.';
         }
         

@@ -35,6 +35,7 @@ $router->get('/dashboard','\App\Controllers\Admin\AdminController@dashboard');
     $router->get('/dashboard/student/edit/(\d+)','\App\Controllers\Admin\StudentController@edit');
     $router->post('/dashboard/student/(\d+)','\App\Controllers\Admin\StudentController@update');
     $router->post('/dashboard/student/delete/(\d+)','\App\Controllers\Admin\StudentController@destroy');
+    $router->get('/dashboard/student/view/(\d+)', '\App\Controllers\Admin\StudentController@view');
     //Admin room
     $router->get('/dashboard/room','\App\Controllers\Admin\RoomController@index');
     $router->get('/dashboard/room/create', '\App\Controllers\Admin\RoomController@create');

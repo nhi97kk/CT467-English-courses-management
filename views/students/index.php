@@ -54,6 +54,8 @@
                                             <i alt="Delete" class="fa fa-trash"></i> Delete
                                         </button>
                                     </form>
+                                    <a href="<?= '/dashboard/student/view/' . $this->e($student->id) ?>" class="btn btn-xs btn-success">
+                                         View course</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

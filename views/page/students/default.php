@@ -26,7 +26,7 @@
 <body>
     <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
         <!-- Branding Image -->
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/student">
             <i class="fa-solid fa-graduation-cap"></i>
             <b>MyE</b>
         </a>
